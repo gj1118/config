@@ -256,12 +256,17 @@ L = ["indent"]
 V = ["rotate_selections_backward", "extend_to_line_start"]
 D = ["ensure_selections_forward", "extend_to_line_end"]
 x = "extend_line"
-C-y = [
-  ':sh rm -f /tmp/unique-file',
-  ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
-  ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
-  ':open %sh{cat /tmp/unique-file}',
-  ':redraw',
+# C-y = [
+#   ':sh rm -f /tmp/unique-file',
+#   ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
+#   ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+#   ':open %sh{cat /tmp/unique-file}',
+#   ':redraw',
+# ]
+"C-y" = [
+  ":vsplit %sh{yazi --chooser-file=/dev/stdout | tr -d '\\n'}",
+  ":redraw",
+  ":set mouse false", ":set mouse true"
 ]
 
 [keys.insert]

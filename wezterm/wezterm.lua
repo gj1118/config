@@ -10,18 +10,16 @@ function scheme_for_appearance(appearance)
 end
 
 config.font = wezterm.font(
-  { family = "Agave", weight = 'Regular' }
+  { family = "Agave", weight = 'Regular' },
+  { family = "Cascadia Code", weight = 'Regular' }
 )
 
 config.use_fancy_tab_bar= false
 config.enable_tab_bar = false
-config.font_size=16
+config.font_size=14
 config.window_background_opacity = 0.94 
 config.adjust_window_size_when_changing_font_size = true
 config.hide_tab_bar_if_only_one_tab = true
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 return config
-
-
-
 
