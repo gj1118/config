@@ -10,8 +10,8 @@ function scheme_for_appearance(appearance)
 end
 
 config.font = wezterm.font(
-  { family = "Agave", weight = 'Regular' },
-  { family = "Cascadia Code", weight = 'Regular' }
+  -- { family = "Cascadia Code", weight = 'Regular' },
+  { family = "Agave", weight = 'Regular' }
 )
 
 config.use_fancy_tab_bar= false
