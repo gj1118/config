@@ -1,6 +1,3 @@
-#  this seems to be a nice resource for keybindings 
-#  https://github.com/matejc/helper_scripts/blob/71b0040640da989afa5c618e879ca2d3de263d9d/dotfiles/helix.nix#L166
-
 theme = "overrides"
 
 [icons.vcs]
@@ -12,27 +9,26 @@ enabled = true
 directory = "🖿"
 rust = "🦀"
 python = "🐍"
-go=""
-json=""
+go = ""
+json = ""
 
 
-[editor.cmdline]
-style = "popup"
-use-full-height = true
-show-icons= true
 
-[editor.cmdline.icons]
-search = "󰶚  "    # For search commands (/,?)
-command = "  "    # For command mode (:)
-shell = "⚡"      # For shell commands (!)
-general = "💬"   # For other prompts
+[editor.inline-blame]
+# Show inline blame on specific lines (default: "never")
+# Options: "cursor", "all", "never"
+show = "cursor-line"
+# Format string for blame display
+# Available placeholders: {author}, {commit}, {time-ago}, {title}
+format = "{author} • {time-ago} • {title}"
+# Auto-fetch blame information (default: false)
+auto-fetch = false
 
 
 [icons.gutter]
 # added    = " "
 # modified = " "
 # removed  = " "
-
 
 [icons.diagnostic]
 error = ""
@@ -42,43 +38,14 @@ hint = ""
 
 [editor.gradient-borders]
 enable = true
-thickness = 1    # Thin borders work best with rounded corners
-direction = "horizontal"
-start-color = "#6A5ACD"
-end-color = "#9370DB"
+thickness = 1
+direction = "vertical"
+start-color = "#dc8a78" # Dark Turquoise
+end-color = "#1e66f5"   # Royal Blue
+animation-speed = 0
 
-
-[editor.notifications]
-enable = true              # Enable notification system
-style = "popup"            # "popup" (noice-style) or "statusline" (traditional)
-position = "top-right"     # Position: "top-right", "top-left", "bottom-right", "bottom-left"
-max-width = 60             # Maximum width for notification popups
-max-height = 1            # Maximum height for notification popups
-default-timeout = 5000     # Default timeout in milliseconds (0 = no timeout)
-show-icons = false  # Show notification type icons
-show-emojis = true         # Show notification type emojis
-max-history = 100          # Maximum notifications to keep in history
-
-# Border configuration
 [editor.notifications.border]
-enable = false             # Show borders around notifications
-width = 1                  # Border width
-radius = 1                 # Corner radius (0 for square corners)
-
-# Customize notification icons
-[editor.notifications.icons]
-info = " "
-warning = " "
-error = " "
-success = " "
-
-
-# Customize notification emojis
-[editor.notifications.emojis]
-info = " "
-warning = " "
-error = " "
-success = " "
+enable = true
 
 
 [editor.whitespace.characters]
@@ -90,35 +57,67 @@ newline = "⏎"
 tabpad = "·"
 
 [icons.kind]
-enabled=true
-# function = "󰊕"
+enabled = true
+function = "󰡱 "
 # method = "󰆧"
 # variable = "󰀫"
 
+# [editor.icons.kind]
+# function = { glyph = "󰊕", color = "#A6E3A1" }
+
+[editor.notifications.emojis]
+info = "💡"
+warning = "⚠️"
+error = "❌"
+success = "✅"
+
+[editor.cmdline]
+style = "popup"
+use-full-height = true
+
+[editor.cmdline.icons]
+search = "  "
+general = "  "
+command = "  "
+
+[editor.notifications]
+enable = true
+style = "popup"
+position = "top-right"
+default-timeout = 1000 # Set to 3 seconds if that's what you intended
+padding = 0            # NEW: content padding
+
+[editor.notifications.shadow]
+enable = false # NEW: drop shadow
+offset-x = 0
+offset-y = 0
 
 [editor.bufferline]
-render-mode = "multiple"
+render-mode = "always"
 separator = "|"
 
 [editor]
-rainbow-brackets= true
-max-panel-width=120
-max-panel-height=120
-welcome-screen= true
-rounded-corners= true
-#bufferline = "multiple"
+rainbow-brackets = true
+max-panel-width = 120
+max-panel-height = 120
+welcome-screen=true
+#welcome-screen-config = { text = "GJ",font="small", start-color = "#FFC100", end-color = "#FFC900"}
+picker-symbol = "👻 "
+rounded-corners = true
+ruler-char = ""         # Use "┊" and then in the theme, set the following "ui.virtual.ruler" = { fg = "ruler_color"}
+
 line-number = "relative"
-rulers= [120]
-gutters = ["diff","spacer", "diagnostics", "line-numbers", "spacer"]
+rulers = [80]
+gutters = ["diff", "spacer", "diagnostics", "line-numbers", "spacer"]
 undercurl = true
 mouse = true
-color-modes = true                                          # this will enable the  modes highlighting in  the status line
+color-modes = true                                                    # this will enable the  modes highlighting in  the status line
 cursorline = true
 cursorcolumn = true
 auto-format = false
 true-color = true
 completion-replace = true
-end-of-line-diagnostics = "hint"
+end-of-line-diagnostics = "disable"
 
 [editor.cursor-shape]
 insert = "block"
@@ -127,37 +126,16 @@ select = "underline"
 
 
 [editor.file-picker]
-hidden = false     # enables ignoring hidden files
-parents = true     # enables reading ignore files from parent directories
-ignore = true      # enables reading .ignore files
-git-ignore = true  #enables reading .gitignore files
+hidden = false      # enables ignoring hidden files
+parents = true      # enables reading ignore files from parent directories
+ignore = true       # enables reading .ignore files
+git-ignore = true   #enables reading .gitignore files
 git-global = true
 git-exclude = true
 hide-preview = true
 
-[editor.inline-blame]
-# Show inline blame on specific lines (default: "never")
-# Options: "cursor-line", "all-lines", "never"
-show = "cursor-line"
-
-# Format string for blame display
-# Available placeholders: {author}, {commit}, {time-ago}, {title}
-format = "{author} • {time-ago} • {title}"
-
-# Auto-fetch blame information (default: false)
-auto-fetch = false
-
-
-
 [editor.statusline]
-left = [
-  "mode",
-  "spinner",
-  "version-control",
-  "read-only-indicator",
-  "file-name",
-  "file-modification-indicator",
-]
+left = ["spinner", "file-name", "function-name", "file-modification-indicator"]
 # center = ["diagnostics", "workspace-diagnostics"]
 center = ["diagnostics"]
 right = [
@@ -170,20 +148,17 @@ right = [
   "file-line-ending",
   "position-percentage",
   "file-type",
-  "spacer"
+  "spacer",
 ]
 separator = "│"
-
 diagnostics = ["warning", "error"]
 workspace-diagnostics = ["warning", "error"]
-
-
 
 
 [editor.inline-diagnostics]
 # Minimum severity to show a diagnostic on the primary cursor's line.
 # Note that `cursor-line` diagnostics are hidden in insert mode.
-cursor-line = "error"
+cursor-line = "disable"
 
 
 [editor.indent-guides]
@@ -205,6 +180,8 @@ display-messages = true
 display-signature-help-docs = true
 display-color-swatches = true
 color-swatches-string = "◆"
+signature-help-position = "above"
+auto-document-highlight = true
 
 
 [editor.soft-wrap]
@@ -212,19 +189,22 @@ enable = true
 
 [keys.select]
 C-x = ["yank_main_selection_to_clipboard", "delete_selection"]
-C-c = "yank_main_selection_to_clipboard"
+C-c = "yank_to_clipboard"
 
 
 [keys.normal]
-g = { a = "code_action_picker", o = "goto_last_accessed_file", h = "changed_file_picker" }
+H = "@vgld"
+g = { a = "code_action_picker", o = "goto_last_accessed_file", h = "changed_file_picker", z = "extend_to_file_end", d = [
+  "vsplit",
+  "goto_definition",
+] }
 tab = "rotate_view"
 S-tab = "rotate_view_reverse"
 C-p = "file_picker"
 C-x = ["yank_main_selection_to_clipboard", "delete_selection"]
 C-c = "yank_to_clipboard"
 C-v = "paste_primary_clipboard_after"
-C-a = "goto_line_start"
-C-e = "goto_line_end"
+C-b = ["buffer_picker"]
 C-q = ["wonly"]
 C-d = [
   "move_prev_word_start",
@@ -234,42 +214,30 @@ C-d = [
 ]
 C-f = "global_search"
 G = "file_picker_in_current_buffer_directory"
-R = [":reload"]
 C-z = "join_selections"
 S = [":buffer-close"]
+ret = ["goto_word"]
 X = ["extend_line_up"]
 P = "toggle_comments"
 C-S-right = "swap_view_right"
-C-S-left= "swap_view_left"
+C-S-left = "swap_view_left"
 C-S-down = "swap_view_down"
-C-S-up= "swap_view_up"
+C-S-up = "swap_view_up"
 S-right = ":bnext"
 S-left = ":bprev"
-"*" = [
-  "move_char_right",
-  "move_prev_word_start",
-  "move_next_word_end",
-  "search_selection",
-  "search_next",
-]
 esc = ["collapse_selection", "keep_primary_selection"]
-H = ["unindent"]
-L = ["indent"]
 V = ["rotate_selections_backward", "extend_to_line_start"]
 D = ["ensure_selections_forward", "extend_to_line_end"]
 x = "extend_line"
-# C-y = [
-#   ':sh rm -f /tmp/unique-file',
-#   ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
-#   ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
-#   ':open %sh{cat /tmp/unique-file}',
-#   ':redraw',
-# ]
-"C-y" = [
-  ":vsplit %sh{yazi --chooser-file=/dev/stdout | tr -d '\\n'}",
-  ":redraw",
-  ":set mouse false", ":set mouse true"
+C-y = [
+  ':sh rm -f /tmp/unique-file',
+  ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
+  ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
 ]
+C-n = "select_next_sibling"
+
 
 [keys.insert]
 C-space = "completion"
@@ -285,36 +253,13 @@ S-right = ":bnext"
 S-left = ":bprev"
 
 [keys.normal.space]
-q = ":bc"
-Q = ":bco"
-"w" = ":w"
-"!" = ":q!"
 l = "local_search_grep"
 L = "local_search_fuzzy"
-o = ":reload-all"
 e = "file_explorer_in_current_directory"
 E = "file_explorer_in_current_buffer_directory"
-H = ["vsplit", "goto_definition"]
-G = [
-    ":write-all",
-    ":insert-output lazygit >/dev/tty",
-    ":redraw",
-    ":reload-all"
-]
 
-
-# B = ":pipe-to tmux split-window -v helix-git-blame"
-# H = ":sh helix-open-in-gh"
-
-[keys.normal.";"]
-b = ":sh helix-wezterm.sh blame"
-c = ":sh helix-wezterm.sh check"
-e = ":sh helix-wezterm.sh explorer"
-f = ":sh helix-wezterm.sh fzf"
-g = ":sh helix-wezterm.sh lazygit"
-o = ":sh helix-wezterm.sh open"
-r = ":sh helix-wezterm.sh run"
-s = ":sh helix-wezterm.sh test_single"
-t = ":sh helix-wezterm.sh test_all"
-
+# [plugins]
+# enabled = true
+# plugin_dirs = ["/Users/gjanjua/sandbox/personal/helix/contrib/plugins"]  # Absolute path to the plugins directory
+# enabled_plugins = ["auto-save", "inline-diagnostic", "pretty-hover"]  # Enable all three plugins
 
