@@ -1,5 +1,6 @@
 #  this seems to be a nice resource for keybindings 
 #  https://github.com/matejc/helper_scripts/blob/71b0040640da989afa5c618e879ca2d3de263d9d/dotfiles/helix.nix#L166
+
 theme = "overrides"
 
 [icons.vcs]
@@ -31,6 +32,7 @@ general = "💬"   # For other prompts
 # added    = " "
 # modified = " "
 # removed  = " "
+
 
 [icons.diagnostic]
 error = ""
@@ -219,7 +221,7 @@ tab = "rotate_view"
 S-tab = "rotate_view_reverse"
 C-p = "file_picker"
 C-x = ["yank_main_selection_to_clipboard", "delete_selection"]
-C-c = "yank_main_selection_to_clipboard"
+C-c = "yank_to_clipboard"
 C-v = "paste_primary_clipboard_after"
 C-a = "goto_line_start"
 C-e = "goto_line_end"
